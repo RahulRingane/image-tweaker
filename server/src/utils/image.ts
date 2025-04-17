@@ -24,6 +24,7 @@ export function sortQueryParamns(searchParams: QueryString.ParsedQs) {
       }
     });
   sortedParams = sortedParams.filter((param) => param.value !== null);
+  console.log("sortedParams", sortedParams)
   return {
     sortedParams,
     code: getCode(sortedParams),
