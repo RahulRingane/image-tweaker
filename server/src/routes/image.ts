@@ -1,12 +1,15 @@
 import { Router } from "express";
 import upload from "../lib/multerConfig";
-import { addImage, getImageById } from "../controllers/image";
+import { addImage, getImageById, getImages } from "../controllers/image";
+import { checkToken } from "../middleware";
 
 import dotenv from "dotenv";
 dotenv.config();
 
 const imageRouter = Router();
+imageRouter.use(checkToken);
 
+imageRouter.get("/", getImages);
 imageRouter.post("/", upload.single("test"), addImage);
 imageRouter.get("/:public_id", getImageById);
 

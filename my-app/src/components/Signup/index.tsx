@@ -19,7 +19,7 @@ export default function Login() {
     onSubmit: async (event, values) => {
       event.preventDefault();
       const res = await axios.post(
-        BACKEND_API_BASE_URL + "/api/auth/login",
+        BACKEND_API_BASE_URL + "/api/auth/signup",
         values,
         {
           withCredentials: true,

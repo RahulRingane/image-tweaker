@@ -23,4 +23,6 @@ export type TokenType = {
     password: string;
 }
 
+export type UserType= z.infer<typeof UserSchema>;
+
 
