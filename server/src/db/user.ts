@@ -49,3 +49,18 @@ export async function addImageToDb(
       isPublic: dbImage.isPublic
     };
   }
+
+  export async function deleteImageFromDb(
+    imageId: string,
+    user_id: string
+  ): Promise<string> {
+    
+    const deleteImage = await prisma.image.delete({
+      where: {
+        id: imageId,
+        createdById: user_id
+      },
+    });
+
+    return deleteImage.id;
+  }

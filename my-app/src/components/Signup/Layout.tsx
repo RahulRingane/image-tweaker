@@ -24,7 +24,7 @@ export default function Layout({ formUI }: { formUI: JSX.Element }) {
           <button onClick={logOut}>Logout</button>
         </div>
       )}
-      <div className="w-full lg:w-[50%] h-screen flex flex-col justify-center items-center bg-gray-100">
+      <div className="w-full lg:w-[50%] h-screen flex flex-col justify-center items-center bg-white">
         <div className="max-w-md w-full p-6">
           <h1 className="text-3xl font-semibold mb-6 text-black text-center">
             Register
