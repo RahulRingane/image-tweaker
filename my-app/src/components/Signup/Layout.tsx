@@ -5,8 +5,11 @@ import { useCookies } from "react-cookie";
 import Alert from "../../assets/Alert";
 
 export default function Layout({ formUI }: { formUI: JSX.Element }) {
-
-    const [{token}] = useCookies(["token"]);
+ 
+  const [{ token }, _, removeCookies] = useCookies(["token"]);
+  function logOut() {
+    removeCookies("token");
+  }
 
   return (
     <div className="w-screen h-screen flex justify-center items-center">
@@ -18,6 +21,7 @@ export default function Layout({ formUI }: { formUI: JSX.Element }) {
           <Link to={"/dashboard"} className="flex justify-center">
             <Alert /> You are already logged in, go to dashboard
           </Link>
+          <button onClick={logOut}>Logout</button>
         </div>
       )}
       <div className="w-full lg:w-[50%] h-screen flex flex-col justify-center items-center bg-gray-100">

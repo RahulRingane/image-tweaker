@@ -12,12 +12,12 @@ export default function Pages() {
   return (
     <>
     <Navbar />
+    <Upload/>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={auth("login")} />
       <Route path="/register" element={auth("signup")} />
       <Route path="/dashboard" element={<Dashboard/>}/>
-      <Route path="/dashboard/upload" element={<Upload/>}/>
     </Routes>
     <SpeedDial/>
     <Toaster/>

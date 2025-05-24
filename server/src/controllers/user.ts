@@ -62,8 +62,8 @@ export async function handleLoginUser(req: Request, resp: Response) {
       });
       return;
     }
-    resp.cookie("token", getToken(foundUser.password, foundUser.username), {
-      maxAge: 24 * 60 * 60 * 1000,
+    resp.cookie("token", getToken(foundUser.username, foundUser.password), {
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
     });
     resp.status(200).send({
       message: "Successfully logged in",

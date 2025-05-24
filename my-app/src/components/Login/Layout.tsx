@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import AuthGraphic from "../../assets/AuthGraphic";
 import { JSX } from "react/jsx-runtime";
-import { useCookies } from "react-cookie"
-import Alert from "../../assets/Alert";
+import { useCookies } from "react-cookie";
 
 export default function Layout({ formUI }: { formUI: JSX.Element }) {
 
-    const [{ token }] = useCookies(["token"])
+   const [{ token }, _, removeCookies] = useCookies(["token"]);
+  function logOut() {
+    removeCookies("token");
+  }
 
     return (
         <div className="w-screen h-screen flex justify-center items-center">
@@ -14,7 +16,7 @@ export default function Layout({ formUI }: { formUI: JSX.Element }) {
                 <AuthGraphic />
             </div>
             {token && (
-                <div className=" backdrop-blur-2xl absolute right-0 z-50 w-full lg:w-[50%] h-screen flex justify-center items-center text-2xl lg:text-3xl font-bold underline">
+                <div className=" backdrop-blur-2xl absolute right-0 z-50 w-full lg:w-[50%] h-screen flex flex-col justify-center items-center text-2xl lg:text-3xl font-bold underline">
                     <Link to={"/dashboard"} className="flex justify-center">
                         <div className=" bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
                             <div className="flex">
@@ -25,6 +27,7 @@ export default function Layout({ formUI }: { formUI: JSX.Element }) {
                             </div>
                         </div>
                     </Link>
+                    <button onClick={logOut}>Logout</button>
                 </div>
             )}
             <div className="w-full lg:w-[50%] h-screen flex flex-col justify-center items-center bg-gray-100">

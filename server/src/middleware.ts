@@ -22,7 +22,7 @@ export async function checkToken(
     const userExists = await prisma.user.findFirst({
       where: { username }
     });
-    if (userExists) {
+    if (!userExists) {
         res.status(402).send({
         message: "Unauthorized Access, Please login to continue",
         status: "failed",
