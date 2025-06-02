@@ -16,10 +16,11 @@ import {
     IconPng,
     OpenInNewTab,
   } from "../../assets/Image";
-  import { Link, useNavigate } from "react-router-dom";
+  import { useNavigate } from "react-router-dom";
   import NotFound from "../../assets/NotFound.png";
   import { useSetRecoilState } from "recoil";
   import { deleteImageConfigState } from "../../state/image";
+  import { Item as ItemPSG} from "react-photoswipe-gallery"
   
   export default function ImageCx({ image }: { image: Image }) {
     const [loading, setLoading] = useState<null | boolean>(true);
@@ -40,7 +41,7 @@ import {
     }, [image.id]);
   
     return (
-      <div className="w-[300px] h-[300px] overflow-hidden rounded-xl m-10 shadow-custom2">
+      <div className="w-[200px] h-[200px] md:w-[300px] md:h-[300px] overflow-hidden rounded-xl m-2 md:m-10 shadow-custom2">
         {loading ? (
           <div className="w-full h-full animate-pulse bg-gray-400" />
         ) : loading === null ? (
@@ -53,18 +54,27 @@ import {
           />
         ) : (
           <>
-            <Link to={`/dashboard/view/${image.id}`}>
+            <ItemPSG
+            original={imageUrl}
+            thumbnail={imageUrl}
+            width="1024"
+            height="768"
+          >
+            {({ ref, open }) => (
               <img
+                ref={ref}
+                onClick={open}
                 src={imageUrl}
                 alt="Image"
-                className="w-full h-full aspect-square object-cover scale-110 hover:scale-100 transition-transform"
+                className="w-full h-full aspect-square object-cover scale-110 hover:scale-100 transition-transform cursor-pointer"
                 onContextMenu={(e) => {
                   show({
                     event: e,
                   });
                 }}
               />
-            </Link>
+            )}
+          </ItemPSG>
             <MenuCX id={image.id} imageUrl={imageUrl} />
           </>
         )}

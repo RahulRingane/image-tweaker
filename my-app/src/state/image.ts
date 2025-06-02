@@ -8,12 +8,12 @@ export const imagesState = atom<Images>({
 })
 
 export const deleteImageConfigState = atom({
-  key: "imagePreviewCntrl",
-  default: {
-    open: false,
-    imageId: "",
-    imageUrl: "",
-  },
+    key: "imagePreviewCntrl",
+    default: {
+        open: false,
+        imageId: "",
+        imageUrl: "",
+    },
 });
 
 
